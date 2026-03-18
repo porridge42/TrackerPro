@@ -1,0 +1,12 @@
+# 项目排除路径
+/target/
+/.idea/.gitignore
+/.idea/compiler.xml
+/.idea/copilot.data.migration.ask2agent.xml
+/.idea/encodings.xml
+/.idea/jarRepositories.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/pom.xml
+/trackerpro.iml
+/.idea/vcs.xml
