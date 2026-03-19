@@ -19,6 +19,7 @@ public class TrackingService {
             return true;
         }
         if (type == Material.MAP) return true;
+        if (type == Material.FILLED_MAP) return true;
         if (type == Material.GOAT_HORN) return true;
         if (type == Material.TRIAL_KEY) return true;
         if (type == Material.ENCHANTED_BOOK) return true;

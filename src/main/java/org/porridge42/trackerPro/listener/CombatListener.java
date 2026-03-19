@@ -17,11 +17,11 @@ public class CombatListener implements Listener {
 
     @EventHandler
     //当玩家受到伤害时，追踪盔甲的承受伤害数据
-    public void onDamage(EntityDamageEvent e) {
-        if (!(e.getEntity() instanceof Player player)) return;
+    public void onDamage(EntityDamageEvent event) {
+        if (!(event.getEntity() instanceof Player player)) return;
 
-        double originalDamage = e.getDamage();
-        double finalDamage = e.getFinalDamage();
+        double originalDamage = event.getDamage();
+        double finalDamage = event.getFinalDamage();
 
         double absorbedDamage = originalDamage - finalDamage;
         if (absorbedDamage <= 0) return;

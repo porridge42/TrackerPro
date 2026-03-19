@@ -7,7 +7,6 @@ import org.porridge42.trackerPro.data.keys.DataKeys;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -23,14 +22,19 @@ public class LoreService {
         var pdc = meta.getPersistentDataContainer();
         List<Component> lore = new ArrayList<>();
 
-        //显示发现标签（日期+发现者）
+        //显示发现标签（发现日期，发现者，发现结构）
         if (pdc.has(DataKeys.KEY_FOUND_DATE, PersistentDataType.STRING)) {
-            lore.add(Component.text("Found on: ", NamedTextColor.AQUA)
+            lore.add(Component.text("Found in: ", NamedTextColor.WHITE)
+                    .append(Component.text(String.format("%s",
+                            pdc.get(DataKeys.KEY_FOUND_STRUCTURE,
+                                    PersistentDataType.STRING)), NamedTextColor.GRAY)));
+
+            lore.add(Component.text("Found on: ", NamedTextColor.WHITE)
                             .append(Component.text(String.format("%s",
                                     pdc.get(DataKeys.KEY_FOUND_DATE,
                                             PersistentDataType.STRING)), NamedTextColor.GRAY)));
             
-            lore.add(Component.text("Found by: ", NamedTextColor.AQUA)
+            lore.add(Component.text("Found by: ", NamedTextColor.WHITE)
                             .append(Component.text(String.format("%s",
                                 pdc.get(DataKeys.KEY_FOUND_BY,
                                         PersistentDataType.STRING)), NamedTextColor.GRAY)));
@@ -38,7 +42,7 @@ public class LoreService {
 
         //显示伤害标签（盔甲）
         if (pdc.has(DataKeys.KEY_DAMAGE_TAKEN, PersistentDataType.DOUBLE)) {
-            lore.add(Component.text("Damage Taken: ", NamedTextColor.AQUA)
+            lore.add(Component.text("Damage Taken: ", NamedTextColor.WHITE)
                             .append(Component.text(String.format("%.2f",
                                     pdc.get(DataKeys.KEY_DAMAGE_TAKEN,
                                     PersistentDataType.DOUBLE)), NamedTextColor.GRAY)));

@@ -3,6 +3,7 @@ package org.porridge42.trackerPro.data;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.loot.LootTable;
 import org.bukkit.persistence.PersistentDataType;
 
 import org.porridge42.trackerPro.data.keys.DataKeys;
@@ -37,6 +38,48 @@ public class ItemDataManager {
         }
         item.setItemMeta(meta);
     }
+
+    //设置战利品发现结构
+    public static void setFoundStructure(ItemStack item, LootTable table) {
+        if (table == null) return;
+
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return;
+
+        String path = table.getKey().toString();
+        String structureName;
+
+        if (path.contains("ancient_city")) structureName = "Ancient City"; // 古代城市
+        else if (path.contains("bastion")) structureName = "Bastion Remnant"; // 堡垒遗迹
+        else if (path.contains("buried_treasure")) structureName = "Buried Treasure"; // 埋藏的宝藏
+        else if (path.contains("end_city")) structureName = "End City"; // 末地城
+        else if (path.contains("nether_bridge")) structureName = "Fortress"; // 下界要塞
+        else if (path.contains("mansion")) structureName = "Mansion"; //林地府邸
+        else if (path.contains("mineshaft")) structureName = "Mineshaft"; //废弃矿井
+        else if (path.contains("monument")) structureName = "Monument"; //海底神殿
+        else if (path.contains("underwater_ruin")) structureName = "Ocean Ruin"; //海底废墟
+        else if (path.contains("ruined_portal")) structureName = "Ruined Portal"; //废弃传送门
+        else if (path.contains("shipwreck")) structureName = "Shipwreck"; //沉船
+        else if (path.contains("stronghold")) structureName = "Stronghold"; //要塞
+        else if (path.contains("pillager_outpost")) structureName = "Pillager Outpost"; //掠夺者前哨站
+        else if (path.contains("desert_pyramid")) structureName = "Desert Pyramid"; //沙漠神殿
+        else if (path.contains("igloo")) structureName = "Igloo"; //雪屋
+        else if (path.contains("jungle_temple")) structureName = "Jungle Pyramid"; //丛林神庙
+        else if (path.contains("trail_ruins")) structureName = "Trail Ruins"; //古迹废墟
+        else if (path.contains("trial_chambers")) structureName = "Trail Chambers"; //试炼密室
+        else if (path.contains("village")) structureName = "Village"; //村庄
+        else if (path.contains("simple_dungeon")) structureName = "Dungeon"; //刷怪房
+        else structureName = "Unknown Structure";
+
+        var pdc = meta.getPersistentDataContainer();
+
+        if (!pdc.has(DataKeys.KEY_FOUND_STRUCTURE, PersistentDataType.STRING)) {
+            pdc.set(DataKeys.KEY_FOUND_STRUCTURE, PersistentDataType.STRING,
+                    structureName);
+        }
+        item.setItemMeta(meta);
+    }
+
     //检查是否有Found数据
     public static boolean hasFoundDate(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
