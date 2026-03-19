@@ -38,13 +38,13 @@ public class TrackingService {
 
         ItemDataManager.setFoundDate(item);
         ItemDataManager.setFoundBy(item, player.getName());
-        LoreService.update(item);
+        LoreService.idleUpdater(item);
         ItemDataManager.removeNaturalLootTag(item);
     }
 
     //追踪承受伤害数据（主要是盔甲）
     public static void trackDamage(ItemStack item, double damage) {
         ItemDataManager.addDoubleData(item, DataKeys.KEY_DAMAGE_TAKEN, damage);
-        LoreService.update(item);
+        LoreService.busyUpdater(item);
     }
 }

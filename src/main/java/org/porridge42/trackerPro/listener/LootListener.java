@@ -73,13 +73,10 @@ public class LootListener implements Listener {
     }
 
     @EventHandler
-    //监听玩家破坏运输矿车事件，手动掉落物品并触发标记
+    //监听玩家破坏运输矿车事件，手动掉落物品并触发标记（这里还没找到问题）
     public void onMinecartDestroy(VehicleDestroyEvent event) {
         if (!(event.getVehicle() instanceof StorageMinecart minecart)) return;
-
         if (!(event.getAttacker() instanceof Player player)) return;
-
-        // 判断是否自然生成��车
         if (!ChestTrackingService.isNaturalChestsMinecraft(minecart)) return;
 
         event.setCancelled(true); //取消原版破坏
