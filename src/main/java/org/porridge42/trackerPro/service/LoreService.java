@@ -25,22 +25,22 @@ public class LoreService {
 
         //显示发现标签（发现日期，发现者，发现结构）
         if (pdc.has(DataKeys.KEY_FOUND_DATE, PersistentDataType.STRING)) {
-            lore.add(Component.text("Found in: ", NamedTextColor.WHITE)
+            lore.add(Component.text("Found at: ", NamedTextColor.GRAY)
                     .append(Component.text(String.format("%s",
                             pdc.get(DataKeys.KEY_FOUND_STRUCTURE,
-                                    PersistentDataType.STRING)), NamedTextColor.GRAY))
+                                    PersistentDataType.STRING)), NamedTextColor.DARK_GRAY))
                     .decoration(TextDecoration.ITALIC, false));
 
-            lore.add(Component.text("Found on: ", NamedTextColor.WHITE)
+            lore.add(Component.text("Found on: ", NamedTextColor.GRAY)
                     .append(Component.text(String.format("%s",
                             pdc.get(DataKeys.KEY_FOUND_DATE,
-                                    PersistentDataType.STRING)), NamedTextColor.GRAY))
+                                    PersistentDataType.STRING)), NamedTextColor.DARK_GRAY))
                     .decoration(TextDecoration.ITALIC, false));
 
-            lore.add(Component.text("Found by: ", NamedTextColor.WHITE)
+            lore.add(Component.text("Found by: ", NamedTextColor.GRAY)
                     .append(Component.text(String.format("%s",
                             pdc.get(DataKeys.KEY_FOUND_BY,
-                                    PersistentDataType.STRING)), NamedTextColor.GRAY))
+                                    PersistentDataType.STRING)), NamedTextColor.DARK_GRAY))
                     .decoration(TextDecoration.ITALIC, false));
         }
         meta.lore(lore);

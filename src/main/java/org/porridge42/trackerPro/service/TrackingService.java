@@ -5,9 +5,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.porridge42.trackerPro.data.ItemDataManager;
 import org.porridge42.trackerPro.data.keys.DataKeys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 //数据追踪服务统一入口，负责处理所有数据追踪相关的逻辑
 public class TrackingService {
+
+    private static final Logger log = LoggerFactory.getLogger(TrackingService.class);
 
     // 判断是否为高价值战利品
     private static boolean isHighValueLoot(ItemStack item) {
@@ -38,6 +42,7 @@ public class TrackingService {
 
         ItemDataManager.setFoundDate(item);
         ItemDataManager.setFoundBy(item, player.getName());
+        LogService.logFound(item, player);
         LoreService.idleUpdater(item);
         ItemDataManager.removeNaturalLootTag(item);
     }
