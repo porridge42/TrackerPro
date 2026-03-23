@@ -7,6 +7,7 @@ import org.porridge42.trackerPro.data.keys.DataKeys;
 import org.porridge42.trackerPro.listener.CombatListener;
 import org.porridge42.trackerPro.listener.LootGenerateListener;
 import org.porridge42.trackerPro.listener.LootListener;
+import org.porridge42.trackerPro.listener.ToolListener;
 
 public final class TrackerPro extends JavaPlugin {
 
@@ -20,6 +21,7 @@ public final class TrackerPro extends JavaPlugin {
         pluginManager.registerEvents(new LootGenerateListener(), this);
         pluginManager.registerEvents(new LootListener(), this);
         pluginManager.registerEvents(new CombatListener(), this);
+        pluginManager.registerEvents(new ToolListener(), this);
         getLogger().info("TrackerPro enabled!");
     }
 

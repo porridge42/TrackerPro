@@ -15,8 +15,7 @@ import java.util.ArrayList;
 //更新物品Lore标签显示服务
 public class LoreService {
 
-    // 这个方法负责更新发现标签这种一般只更新一次的lore
-    public static void idleUpdater(ItemStack item) {
+    public static void updater(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
 
@@ -43,24 +42,36 @@ public class LoreService {
                                     PersistentDataType.STRING)), NamedTextColor.DARK_GRAY))
                     .decoration(TextDecoration.ITALIC, false));
         }
-        meta.lore(lore);
-        item.setItemMeta(meta);
-    }
-
-    // 这个方法负责更新使用次数这种需要经常更新的lore
-    public static void busyUpdater(ItemStack item) {
-        ItemMeta meta = item.getItemMeta();
-        if (meta == null) return;
-
-        var pdc = meta.getPersistentDataContainer();
-        List<Component> lore = new ArrayList<>();
-
         //显示伤害标签（盔甲）
         if (pdc.has(DataKeys.KEY_DAMAGE_TAKEN, PersistentDataType.DOUBLE)) {
-            lore.add(Component.text("Damage Taken: ", NamedTextColor.WHITE)
+            lore.add(Component.text("Damage Taken: ", NamedTextColor.GRAY)
                     .append(Component.text(String.format("%.2f",
                             pdc.get(DataKeys.KEY_DAMAGE_TAKEN,
-                                    PersistentDataType.DOUBLE)), NamedTextColor.GRAY))
+                                    PersistentDataType.DOUBLE)), NamedTextColor.DARK_GRAY))
+                    .decoration(TextDecoration.ITALIC, false));
+        }
+        //显示方块挖掘数
+        if (pdc.has(DataKeys.KEY_BLOCKS_MINED, PersistentDataType.INTEGER)) {
+            lore.add(Component.text("Blocks Mined: ", NamedTextColor.GRAY)
+                    .append(Component.text(String.format("%d",
+                            pdc.get(DataKeys.KEY_BLOCKS_MINED,
+                                    PersistentDataType.INTEGER)), NamedTextColor.DARK_GRAY))
+                    .decoration(TextDecoration.ITALIC, false));
+        }
+        //显示捕鱼数
+        if (pdc.has(DataKeys.KEY_FISH_CAUGHT, PersistentDataType.INTEGER)) {
+            lore.add(Component.text("Fish Caught: ", NamedTextColor.GRAY)
+                    .append(Component.text(String.format("%d",
+                            pdc.get(DataKeys.KEY_FISH_CAUGHT,
+                                    PersistentDataType.INTEGER)), NamedTextColor.DARK_GRAY))
+                    .decoration(TextDecoration.ITALIC, false));
+        }
+        //显示耕地数
+        if (pdc.has(DataKeys.KEY_FIELD_HOED, PersistentDataType.INTEGER)) {
+            lore.add(Component.text("Farmlands Hoed: ", NamedTextColor.GRAY)
+                    .append(Component.text(String.format("%d",
+                            pdc.get(DataKeys.KEY_FIELD_HOED,
+                                    PersistentDataType.INTEGER)), NamedTextColor.DARK_GRAY))
                     .decoration(TextDecoration.ITALIC, false));
         }
         meta.lore(lore);

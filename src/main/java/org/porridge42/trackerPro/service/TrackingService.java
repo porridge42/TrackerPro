@@ -43,13 +43,31 @@ public class TrackingService {
         ItemDataManager.setFoundDate(item);
         ItemDataManager.setFoundBy(item, player.getName());
         LogService.logFound(item, player);
-        LoreService.idleUpdater(item);
+        LoreService.updater(item);
         ItemDataManager.removeNaturalLootTag(item);
     }
 
     //追踪承受伤害数据（主要是盔甲）
     public static void trackDamage(ItemStack item, double damage) {
         ItemDataManager.addDoubleData(item, DataKeys.KEY_DAMAGE_TAKEN, damage);
-        LoreService.busyUpdater(item);
+        LoreService.updater(item);
+    }
+
+    //追踪鱼竿使用次数
+    public static void trackFishing(ItemStack item) {
+        ItemDataManager.addIntegerData(item, DataKeys.KEY_FISH_CAUGHT, 1);
+        LoreService.updater(item);
+    }
+
+    //追踪锄头使用次数
+    public static void trackHoed(ItemStack item) {
+        ItemDataManager.addIntegerData(item, DataKeys.KEY_FIELD_HOED, 1);
+        LoreService.updater(item);
+    }
+
+    //追钟方块挖掘次数（镐，斧，铲，锄）
+    public static void trackMined(ItemStack item) {
+        ItemDataManager.addIntegerData(item, DataKeys.KEY_BLOCKS_MINED, 1);
+        LoreService.updater(item);
     }
 }

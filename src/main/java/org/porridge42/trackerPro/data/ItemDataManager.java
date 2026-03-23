@@ -122,7 +122,7 @@ public class ItemDataManager {
         item.setItemMeta(meta);
     }
 
-    //设置小数累加数据（主要是计算伤害）
+    //  设置小数累加数据（主要是计算伤害）
     public static void addDoubleData(ItemStack item, NamespacedKey key, double value) {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
@@ -131,6 +131,19 @@ public class ItemDataManager {
 
         double current = pdc.getOrDefault(key, PersistentDataType.DOUBLE, 0.0);
         pdc.set(key, PersistentDataType.DOUBLE, current + value);
+
+        item.setItemMeta(meta);
+    }
+
+    //  设置整数累加数据（计算使用次数）
+    public static void addIntegerData (ItemStack item, NamespacedKey key, int value) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return;
+
+        var pdc = meta.getPersistentDataContainer();
+
+        int current = pdc.getOrDefault(key, PersistentDataType.INTEGER, 0);
+        pdc.set(key, PersistentDataType.INTEGER, current + value);
 
         item.setItemMeta(meta);
     }
