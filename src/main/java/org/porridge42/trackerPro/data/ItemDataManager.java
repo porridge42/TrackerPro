@@ -69,6 +69,7 @@ public class ItemDataManager {
         else if (path.contains("trial_chambers")) structureName = "Trail Chambers"; //试炼密室
         else if (path.contains("village")) structureName = "Village"; //村庄
         else if (path.contains("simple_dungeon")) structureName = "Dungeon"; //刷怪房
+        else if (path.contains("fishing")) structureName = "Fishing"; //钓鱼
         else structureName = "Unknown Structure";
 
         var pdc = meta.getPersistentDataContainer();

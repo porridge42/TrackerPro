@@ -6,9 +6,13 @@ import org.bukkit.plugin.Plugin;
 //pdc键名的统一管理
 public class DataKeys {
 
+    public static NamespacedKey KEY_UUID;
+
     public static NamespacedKey KEY_FOUND_BY;
     public static NamespacedKey KEY_FOUND_DATE;
     public static NamespacedKey KEY_FOUND_STRUCTURE;
+    public static NamespacedKey KEY_TRADED_BY;
+    public static NamespacedKey KEY_TRADED_DATE;
 
     public static NamespacedKey KEY_DAMAGE_TAKEN;
     public static NamespacedKey KEY_BLOCKS_MINED;
@@ -20,9 +24,12 @@ public class DataKeys {
     public static NamespacedKey KEY_NATURAL_LOOT;
 
     public static void init(Plugin plugin) {
+        KEY_UUID = new NamespacedKey(plugin, "uuid");
         KEY_FOUND_BY = new NamespacedKey(plugin, "found_by");
         KEY_FOUND_DATE = new NamespacedKey(plugin, "found_date");
         KEY_FOUND_STRUCTURE = new NamespacedKey(plugin, "found_structure");
+        KEY_TRADED_BY = new NamespacedKey(plugin, "traded_by");
+        KEY_TRADED_DATE = new NamespacedKey(plugin, "traded_date");
 
         KEY_DAMAGE_TAKEN = new NamespacedKey(plugin, "damage_taken");
         KEY_BLOCKS_MINED = new NamespacedKey(plugin, "blocks_mined");
@@ -33,5 +40,4 @@ public class DataKeys {
 
         KEY_NATURAL_LOOT = new NamespacedKey(plugin, "natural_loot");
     }
-
 }

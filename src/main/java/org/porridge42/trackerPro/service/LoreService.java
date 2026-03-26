@@ -74,6 +74,22 @@ public class LoreService {
                                     PersistentDataType.INTEGER)), NamedTextColor.DARK_GRAY))
                     .decoration(TextDecoration.ITALIC, false));
         }
+        //显示玩家击杀数
+        if (pdc.has(DataKeys.KEY_PLAYERS_KILLS, PersistentDataType.INTEGER)) {
+            lore.add(Component.text("Players Killed: ", NamedTextColor.GRAY)
+                    .append(Component.text(String.format("%d",
+                            pdc.get(DataKeys.KEY_PLAYERS_KILLS,
+                                    PersistentDataType.INTEGER)), NamedTextColor.DARK_GRAY))
+                    .decoration(TextDecoration.ITALIC, false));
+        }
+        //显示怪物击杀数
+        if (pdc.has(DataKeys.KEY_MOBS_KILLS, PersistentDataType.INTEGER)) {
+            lore.add(Component.text("Mobs killed: ", NamedTextColor.GRAY)
+                    .append(Component.text(String.format("%d",
+                            pdc.get(DataKeys.KEY_MOBS_KILLS,
+                                    PersistentDataType.INTEGER)), NamedTextColor.DARK_GRAY))
+                    .decoration(TextDecoration.ITALIC, false));
+        }
         meta.lore(lore);
         item.setItemMeta(meta);
     }

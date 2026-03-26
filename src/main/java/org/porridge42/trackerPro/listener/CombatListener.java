@@ -1,13 +1,15 @@
 package org.porridge42.trackerPro.listener;
 
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
 import org.porridge42.trackerPro.data.ArmorDataManager;
 import org.porridge42.trackerPro.service.TrackingService;
+import org.porridge42.trackerPro.util.ItemUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,5 +56,23 @@ public class CombatListener implements Listener {
 
             TrackingService.trackDamage(armor, damageShare);
         }
+    }
+
+    @EventHandler
+    // 监听玩家杀死怪物或玩家
+    public void onKill(EntityDeathEvent event) {
+        Player killer = event.getEntity().getKiller();
+        if (killer == null) return;
+
+        ItemStack weapon = killer.getInventory().getItemInMainHand();
+        if (!ItemUtils.isWeapon(weapon)) weapon = killer.getInventory().getItemInOffHand();
+        if (!ItemUtils.isWeapon(weapon)) return;
+
+        Entity entity = event.getEntity();
+
+        if (entity instanceof Monster || entity instanceof Boss) {
+            TrackingService.trackModsKill(weapon);
+        }
+        if (entity instanceof Player) TrackingService.trackPlaysKill(weapon);
     }
 }
