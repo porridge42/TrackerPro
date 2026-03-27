@@ -42,6 +42,19 @@ public class LoreService {
                                     PersistentDataType.STRING)), NamedTextColor.DARK_GRAY))
                     .decoration(TextDecoration.ITALIC, false));
         }
+        //显示交易获取标签（交易日期，交易者）
+        if (pdc.has(DataKeys.KEY_TRADED_DATE, PersistentDataType.STRING)) {
+            lore.add(Component.text("Traded on: ", NamedTextColor.GRAY)
+                    .append(Component.text(String.format("%s",
+                            pdc.get(DataKeys.KEY_TRADED_DATE,
+                                    PersistentDataType.STRING)), NamedTextColor.DARK_GRAY))
+                    .decoration(TextDecoration.ITALIC, false));
+            lore.add(Component.text("Traded by: ", NamedTextColor.GRAY)
+                    .append(Component.text(String.format("%s",
+                            pdc.get(DataKeys.KEY_TRADED_BY,
+                                    PersistentDataType.STRING)), NamedTextColor.DARK_GRAY))
+                    .decoration(TextDecoration.ITALIC, false));
+        }
         //显示伤害标签（盔甲）
         if (pdc.has(DataKeys.KEY_DAMAGE_TAKEN, PersistentDataType.DOUBLE)) {
             lore.add(Component.text("Damage Taken: ", NamedTextColor.GRAY)

@@ -14,10 +14,19 @@ public class TrackingService {
         if (!ItemUtils.isHighValueLoot(item)) return; // 过滤非高价值战利品
 
         ItemDataManager.setFoundDate(item);
-        ItemDataManager.setFoundBy(item, player.getName());
+        ItemDataManager.setFoundBy(item, player);
         LogService.logFound(item, player);
         LoreService.updater(item);
         ItemDataManager.removeNaturalLootTag(item);
+    }
+
+    public static void trackTrade(ItemStack item, Player player) {
+        if (!ItemUtils.isHighValueLoot(item)) return;
+
+        ItemDataManager.setTradeDate(item);
+        ItemDataManager.setTradeBy(item, player);
+        LogService.logTrade(item, player);
+        LoreService.updater(item);
     }
 
     //追踪承受伤害数据（主要是盔甲）
@@ -38,7 +47,7 @@ public class TrackingService {
         LoreService.updater(item);
     }
 
-    //追钟方块挖掘次数（镐，斧，铲，锄）
+    //追踪方块挖掘次数（镐，斧，铲，锄）
     public static void trackMined(ItemStack item) {
         ItemDataManager.addIntegerData(item, DataKeys.KEY_BLOCKS_MINED, 1);
         LoreService.updater(item);

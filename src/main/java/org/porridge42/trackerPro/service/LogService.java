@@ -26,8 +26,17 @@ public class LogService {
         ItemMeta meta = item.getItemMeta();
         var pdc = meta.getPersistentDataContainer();
 
-        plugin.getLogger().info("<" + getDimensionName(player) + ">" +
-                player.getName() + " found a " + item.getType() + " at " +
-                pdc.get(DataKeys.KEY_FOUND_STRUCTURE, PersistentDataType.STRING));
+        plugin.getLogger().info("<" + getDimensionName(player) + "> "
+                + player.getName() + " found a " + item.getType() + " at "
+                + pdc.get(DataKeys.KEY_FOUND_STRUCTURE, PersistentDataType.STRING));
+    }
+
+    public static void logTrade(ItemStack item, Player player) {
+        if (item == null|| player == null) return;
+        if (!item.hasItemMeta()) return;
+        TrackerPro plugin = TrackerPro.getInstance();
+
+        plugin.getLogger().info("<" + getDimensionName(player) + "> "
+                + player.getName() + " get a " + item.getType() + " by trading ");
     }
 }

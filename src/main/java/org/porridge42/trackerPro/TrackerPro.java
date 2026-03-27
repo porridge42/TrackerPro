@@ -15,11 +15,14 @@ public final class TrackerPro extends JavaPlugin {
         instance = this;
         DataKeys.init(this);
         PluginManager pluginManager = getServer().getPluginManager();
+
+        pluginManager.registerEvents(new TradeListener(), this);
         pluginManager.registerEvents(new LootGenerateListener(), this);
         pluginManager.registerEvents(new LootListener(), this);
         pluginManager.registerEvents(new CombatListener(), this);
         pluginManager.registerEvents(new ToolListener(), this);
         pluginManager.registerEvents(new FishingListener(), this);
+
         getLogger().info("TrackerPro enabled!");
     }
 

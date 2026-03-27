@@ -25,6 +25,7 @@ public class DataKeys {
 
     public static void init(Plugin plugin) {
         KEY_UUID = new NamespacedKey(plugin, "uuid");
+
         KEY_FOUND_BY = new NamespacedKey(plugin, "found_by");
         KEY_FOUND_DATE = new NamespacedKey(plugin, "found_date");
         KEY_FOUND_STRUCTURE = new NamespacedKey(plugin, "found_structure");

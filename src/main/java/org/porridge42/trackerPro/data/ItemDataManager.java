@@ -1,6 +1,7 @@
 package org.porridge42.trackerPro.data;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.loot.LootTable;
@@ -14,14 +15,14 @@ import java.time.LocalDate;
 public class ItemDataManager {
 
     //设置战利品发现者
-    public static void setFoundBy(ItemStack item, String player) {
+    public static void setFoundBy(ItemStack item, Player player) {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
 
         var pdc = meta.getPersistentDataContainer();
 
         if (!pdc.has(DataKeys.KEY_FOUND_BY, PersistentDataType.STRING)) {
-            pdc.set(DataKeys.KEY_FOUND_BY, PersistentDataType.STRING, player);
+            pdc.set(DataKeys.KEY_FOUND_BY, PersistentDataType.STRING, player.getName());
         }
         item.setItemMeta(meta);
     }
@@ -34,6 +35,30 @@ public class ItemDataManager {
 
         if (!pdc.has(DataKeys.KEY_FOUND_DATE, PersistentDataType.STRING)) {
             pdc.set(DataKeys.KEY_FOUND_DATE, PersistentDataType.STRING,
+                    LocalDate.now().toString());
+        }
+        item.setItemMeta(meta);
+    }
+
+    //设置交易者
+    public static void setTradeBy(ItemStack item, Player player) {
+        ItemMeta meta = item.getItemMeta();
+
+        var pdc = meta.getPersistentDataContainer();
+
+        if (!pdc.has(DataKeys.KEY_TRADED_BY, PersistentDataType.STRING)) {
+            pdc.set(DataKeys.KEY_TRADED_BY, PersistentDataType.STRING, player.getName());
+        }
+        item.setItemMeta(meta);
+    }
+    //设置交易时间
+    public static void setTradeDate(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+
+        var pdc = meta.getPersistentDataContainer();
+
+        if(!pdc.has(DataKeys.KEY_TRADED_DATE, PersistentDataType.STRING)) {
+            pdc.set(DataKeys.KEY_TRADED_DATE, PersistentDataType.STRING,
                     LocalDate.now().toString());
         }
         item.setItemMeta(meta);
