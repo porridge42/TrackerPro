@@ -1,6 +1,6 @@
 # TrackerPro
 
-`TrackerPro` 是一个面向 `Paper 1.21.1` 的 Minecraft 插件，用来为高价值物品记录来源与使用数据，并将结果直接显示在物品 `lore` 中。
+`TrackerPro` 是一个面向 `Paper Server` 的 Minecraft 插件，用来为高价值物品记录来源与使用数据，并将结果直接显示在物品 `lore` 中。
 
 ## 功能
 
