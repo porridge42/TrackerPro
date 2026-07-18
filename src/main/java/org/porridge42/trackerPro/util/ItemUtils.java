@@ -21,10 +21,12 @@ public class ItemUtils {
         if (type == Material.ENCHANTED_BOOK) return true;
         if (type == Material.HEART_OF_THE_SEA) return true;
         if (type == Material.ENCHANTED_GOLDEN_APPLE) return true;
+        if (type == Material.BUNDLE) return true;
+        if (type.name().endsWith("_BUNDLE")) return true;
         if (type.name().startsWith("MUSIC_DISC_") || type == Material.DISC_FRAGMENT_5) return true;
         if (type.name().endsWith("_HORSE_ARMOR")) return true;
         if (type.name().endsWith("_SMITHING_TEMPLATE")) return true;
-
+        if (type.name().endsWith("_NAUTILUS_ARMOR")) return true;
         return false;
     }
 

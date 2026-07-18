@@ -1,7 +1,7 @@
 name: TrackerPro
-version: '1.0.0'
+version: '1.0.1'
 main: org.porridge42.trackerPro.TrackerPro
 description: Track your loot and tool usage status
-api-version: '1.21.1'
+api-version: '26.1.2'
 authors:
   - porridge42

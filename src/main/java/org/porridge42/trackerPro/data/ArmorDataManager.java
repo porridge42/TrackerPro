@@ -13,31 +13,26 @@ public class ArmorDataManager {
 
     //获取护甲值的方法（用于计算不同类型的盔甲承受的伤害）
     public static double getArmorPoints(ItemStack item) {
-        if (item == null || !item.hasItemMeta()) return 0;
-
-        ItemMeta meta = item.getItemMeta();
-        if (meta == null) return 0;
-
-        double armor = 0;
-
-        if (meta.hasAttributeModifiers()) {
-            Collection<AttributeModifier> modifiers =
-                    meta.getAttributeModifiers(Attribute.GENERIC_ARMOR);
-
-            if (modifiers != null) {
-                for (AttributeModifier modifier : modifiers) {
-                    armor += modifier.getAmount();
-                }
-            }
+        if (item == null || item.isEmpty()) {
+            return 0.0;
         }
 
-        // 如果没有护甲属性，提供默认值
-        if (armor == 0) {
-            Material type = item.getType();
-            if (type.name().endsWith("_HELMET")) armor = 2;
-            else if (type.name().endsWith("_CHESTPLATE")) armor = 6;
-            else if (type.name().endsWith("_LEGGINGS")) armor = 5;
-            else if (type.name().endsWith("_BOOTS")) armor = 1;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) {
+            return 0.0;
+        }
+
+        Collection<AttributeModifier> modifiers = meta.getAttributeModifiers(Attribute.ARMOR);
+        if (modifiers == null) {
+            return 0.0;
+        }
+
+        double armor = 0.0;
+
+        for (AttributeModifier modifier : modifiers) {
+            if (modifier.getOperation() == AttributeModifier.Operation.ADD_NUMBER) {
+                armor += modifier.getAmount();
+            }
         }
 
         return armor;
