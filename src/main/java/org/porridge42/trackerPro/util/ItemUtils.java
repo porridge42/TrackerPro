@@ -40,8 +40,8 @@ public class ItemUtils {
         if (type == Material.TRIDENT) return true;
         if (type == Material.MACE) return true;
         if (type == Material.CROSSBOW) return true;
-        // if (type == Material.SPEAR) return true;
 
+        if (name.endsWith("_SPEAR")) return true;
         if (name.endsWith("_SWORD")) return true;
         if (name.endsWith("_AXE")) return true;
         return false;
