@@ -62,6 +62,7 @@ public class LootGenerateListener implements Listener {
             NamespacedKey key = NamespacedKey.minecraft("chests/end_city_treasure");
             LootTable table = Bukkit.getLootTable(key);
             ItemDataManager.setFoundStructure(item, table);
+            itemEntity.setItemStack(item);
         }
     }
 }

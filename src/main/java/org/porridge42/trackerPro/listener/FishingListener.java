@@ -28,7 +28,7 @@ public class FishingListener implements Listener {
         LootTable lootTable = Bukkit.getLootTable(key);
         ItemDataManager.setFoundStructure(itemStack, lootTable);
 
-        itemEntity.setItemStack(itemStack);
         TrackingService.trackLoot(itemStack, player);
+        itemEntity.setItemStack(itemStack);
     }
 }
